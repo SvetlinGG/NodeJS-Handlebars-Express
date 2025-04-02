@@ -8,6 +8,9 @@ app.engine('handlebars', handlebars.engine());
 
 // 2.Set default view engine
 app.set('view engine', 'handlebars');
+app.get('/', (req, res) => {
+    res.render('home', {layout: false})
+})
 
 app.get('/', (req, res) => {
     res.send('Hello from Express!')
