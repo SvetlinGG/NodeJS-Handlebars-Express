@@ -3,6 +3,12 @@ import handlebars from'express-handlebars';
 
 const app = express();
 
+const cats = [
+    {name: 'Navcho', age: 9, breed: 'Persian'},
+    {name: 'Tommy', age: 10, breed: 'Angora'},
+    {name: 'Azara', age: 5, breed: 'Street-beauty'},
+]
+
 // 1.Register/Add view engine:
 app.engine('hbs', handlebars.engine({
     extname: 'hbs'
@@ -16,7 +22,8 @@ app.get('/', (req, res) => {
 });
 
 app.get('/cats', (req, res) => {
-    res.render('cats')
+    
+    res.render('cats', {cats})
 })
 
 app.get('/', (req, res) => {
