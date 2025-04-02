@@ -3,6 +3,8 @@ import handlebars from'express-handlebars';
 
 const app = express();
 
+app.use(express.urlencoded({extended: false}));
+
 const cats = [
     {name: 'Navcho', age: 9, breed: 'Persian'},
     {name: 'Tommy', age: 10, breed: 'Angora'},
@@ -24,6 +26,15 @@ app.get('/', (req, res) => {
 app.get('/cats', (req, res) => {
     
     res.render('cats', {cats})
+});
+
+app.get('/cats/add', (req, res) => {
+    res.render('addCat');
+});
+app.post('/cats/add', (req, res) => {
+    const newCat = req.body;
+    cats.push(newCat);
+    res.redirect('/cats');
 })
 
 app.get('/', (req, res) => {
